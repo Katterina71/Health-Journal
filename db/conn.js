@@ -1,8 +1,15 @@
-import mongoose from "mongoose";
+import('dotenv/config');
+import mongoose from 'mongoose';
 
-//connect ot MongoDB
-const dbURI = 'mongodb+srv://beviatori:i5VL7U26Z3NzZDEy@healthlog.broafjs.mongodb.net/?retryWrites=true&w=majority&appName=HealthLog'
-mongoose.connect(dbURI, {userNewUrlParser:true, userUnifiedTopology:true})
-    .then((result)=> console.log('connect to db'))
-    .catch((err) => console.log(err));
+// Connect to MongoDB
+const dbURI = process.env.ATLAS_URI || '';
 
+export default async function connectToDb() {
+      try {
+        await mongoose.connect(dbURI);
+        console.log('Connected to MongoDB');
+      } catch (err) {
+        console.log(err);
+      }
+}
+    

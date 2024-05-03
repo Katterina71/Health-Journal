@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
+import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
+import Users from '../model/users.js';
 
-const mongoose = require('mongoose');
-const Users = require('../model/users')
 
 
 
@@ -126,7 +127,4 @@ router.route('/delete/:username')
 // });
 
 
-
-
-
-module.exports = router;
+export default router

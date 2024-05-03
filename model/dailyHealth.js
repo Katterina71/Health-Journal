@@ -1,4 +1,7 @@
-const mongoose = require('mongoose');
+
+// const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 // Snacks Sub-document Schema
@@ -47,4 +50,6 @@ const dailyHealthSchema = new Schema({
 
 
   const DailyHealth = mongoose.model('DailyHealth',dailyHealthSchema)
-  module.exports = DailyHealth;
+  
+  // module.exports = DailyHealth;
+  export default DailyHealth;

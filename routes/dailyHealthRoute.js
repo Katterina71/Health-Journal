@@ -1,10 +1,10 @@
-const express = require('express');
+
+
+import express from 'express';
+import mongoose from 'mongoose';
+import DailyHealth from '../model/dailyHealth.js';
+
 const router = express.Router();
-
-
-const mongoose = require('mongoose');
-const DailyHealth = require('../model/dailyHealth');
-
 router.get('/', async (req, res, next) => {
     try {
         const result = await DailyHealth.find({});
@@ -46,4 +46,5 @@ router.post('/add', (req, res, next) => {
            })
    })
 
-module.exports = router;
+
+export default router

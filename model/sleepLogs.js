@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 
@@ -19,4 +21,6 @@ const sleepLogsSchema = new Schema({
 
 
   const SleepLogs = mongoose.model('SleepLogs',sleepLogsSchema)
-  module.exports = SleepLogs;
+  
+  // module.exports = SleepLogs;
+  export default SleepLogs;

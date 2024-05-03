@@ -1,23 +1,19 @@
-const express =  require ('express');
+import express from 'express';
+import 'dotenv/config';
+import connectToDb from './db/conn.js';
+
+
 const app = express();
 const PORT = 3000;
 
-const mongoose = require('mongoose');
+connectToDb();
 
-//connect ot MongoDB
-const dbURI = 'mongodb+srv://beviatori:i5VL7U26Z3NzZDEy@healthlog.broafjs.mongodb.net/healthLog?retryWrites=true&w=majority&appName=HealthLog'
-mongoose.connect(dbURI, {useNewUrlParser:true, useUnifiedTopology:true})
-    .then((result)=> 
-        // Start the Express server
-        app.listen(PORT, () => {
-        console.log(`Server is running on port: ${PORT}`);
-        })
-    )
-    .catch((err) => console.log(err));
 
-const users = require("./routes/usersRoute.js");
-const dailyHealth =require("./routes/dailyHealthRoute.js");
-const sleepLogs =require("./routes/SleepLogsRoute.js");
+import users from "./routes/usersRoute.js";
+import dailyHealth from "./routes/dailyHealthRoute.js";
+import sleepLogs from "./routes/SleepLogsRoute.js";
+
+app.use(express.json());
 
 // Use our Routes
 app.use("/api/users", users);
@@ -41,4 +37,9 @@ app.use((err, req, res, next) => {
         res.send("Seems like we messed up somewhere...");
     }
 });
+
   
+// Start the Express server
+app.listen(PORT, () => {
+console.log(`Server is running on port: ${PORT}`);
+})

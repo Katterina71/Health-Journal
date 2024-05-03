@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
+import moment from 'moment';
+
+import mongoose from 'mongoose';
+import SleepLogs from '../model/sleepLogs.js';
+import Users from '../model/users.js'; 
+
+
 const router = express.Router();
-const moment = require('moment');
-
-
-const mongoose = require('mongoose');
-const SleepLogs = require('../model/sleepLogs');
-const Users = require('../model/users'); 
 
 router.get('/', async (req, res, next) => {
     try {
@@ -74,6 +75,37 @@ router.route('/change/:username')
         console.error(err);
         next(err);  
     }
-});
+})
+ .patch(async (req, res, next) => {
 
-module.exports = router;
+    const dateString = req.query.date;
+    let formattedDate = dateString.replace(' ', '+'); 
+    let dateObject = new Date(formattedDate);
+
+    try {
+        // Find the user by username to get the user's ID
+        const user = await Users.findOne({ username: req.params.username }).select('_id');
+        
+        if (!user) {
+            return res.status(404).send({ message: "User not found." });
+        }
+
+        // If user exists, use the user ID to delete the sleep logs
+        const userId = user._id;
+
+        const result = await SleepLogs.findOne({ userId: userId, date: dateObject});  
+
+        if (result.deletedCount === 0) {
+            res.status(404).send({ message: "No sleep logs found for the specified user." });
+        } else {
+            res.send({ message: "Sleep log was changed successfully." });
+        }
+    } catch (err) {
+        console.error(err);
+        next(err);  
+    }
+
+
+ })
+
+export default router
