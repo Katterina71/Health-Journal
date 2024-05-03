@@ -21,24 +21,24 @@ const exerciseSchema = new Schema ({
 
 // Main Document Schema for Daily Health Logs
 const dailyHealthSchema = new Schema({
-  "userId": {
-    "type": Schema.Types.ObjectId, 
-    "ref": 'User',  
+  userId: {
+    type: Schema.Types.ObjectId, 
+    ref: 'User',  
     required: true  
   },
-  "date": {
-    "type": "Date",
+  date: {
+    type: Date,
     required: true
   },
-  "diet": {
-    "breakfast": {
-      "type": "String"
+  diet: {
+    breakfast: {
+      type: String
     },
-    "lunch": {
-      "type": "String"
+    lunch: {
+      type: String
     },
-    "dinner": {
-      "type": "String"
+    dinner: {
+      type: String
     },
     snacks: [snacksSchema]
   },

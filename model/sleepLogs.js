@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 
 const sleepLogsSchema = new Schema({
 
-  "userId": {
-    "type": Schema.Types.ObjectId, 
-    "ref": 'User',  
+  userId: {
+    type: Schema.Types.ObjectId, 
+    ref: 'User',  
     required: true  
   },
-  "date": {
-    "type": "Date"
+  date: {
+    type: Date
   },
-  "hoursSlept": {
-    "type": "Number"
+  hoursSlept: {
+    type: Number
   }
 })
 

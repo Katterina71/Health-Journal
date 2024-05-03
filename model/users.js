@@ -4,32 +4,32 @@ const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
 
-    "username": {
-      "type": "String",
+    username: {
+      type: String,
       required: true
     },
-    "email": {
-      "type": "String",
+    email: {
+      type: String,
       required: true
     },
-    "password": {
-      "type": "String",
+    password: {
+      type: String,
       required: true
     },
-    "age": {
-      "type": "Number",
+    age: {
+      type: Number,
       required: true
     },
-    "gender": {
-      "type": "String",
+    gender: {
+      type: String,
       required: true
     },
-    "height": {
-      "type": "Number",
+    height: {
+      type: Number,
       required: true
     },
-    "weight": {
-      "type": "Number",
+    weight: {
+      type: Number,
       required: true
     }
   })
