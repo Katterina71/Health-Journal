@@ -12,15 +12,20 @@ const sleepLogsSchema = new Schema({
     required: true  
   },
   date: {
-    type: Date
+    type: Date,
+    required: true,
   },
   hoursSlept: {
-    type: Number
+    type: Number,
+    required: true
   }
-})
+}
+)
 
+// Creating a compound unique index on userId and date
+sleepLogsSchema.index({ userId: 1, date: 1 }, { unique: true });
 
-  const SleepLogs = mongoose.model('SleepLogs',sleepLogsSchema)
+const SleepLogs = mongoose.model('SleepLogs',sleepLogsSchema)
   
-  // module.exports = SleepLogs;
-  export default SleepLogs;
+// module.exports = SleepLogs;
+export default SleepLogs;

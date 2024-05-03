@@ -17,8 +17,8 @@ app.use(express.json());
 
 // Use our Routes
 app.use("/api/users", users);
-app.use("/api/dailyHealth", dailyHealth);
-app.use("/api/sleepLogs", sleepLogs);
+app.use("/api/dailyhealth", dailyHealth);
+app.use("/api/sleeplogs", sleepLogs);
 
 
 // Global error handling

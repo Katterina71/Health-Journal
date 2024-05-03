@@ -31,7 +31,7 @@ const dailyHealthSchema = new Schema({
   },
   date: {
     type: Date,
-    required: true
+    required: true,
   },
   diet: {
     breakfast: {
@@ -46,7 +46,9 @@ const dailyHealthSchema = new Schema({
     snacks: [snacksSchema]
   },
   exercises: [exerciseSchema]
-})
+},
+{_id: false}
+)
 
 
   const DailyHealth = mongoose.model('DailyHealth',dailyHealthSchema)
