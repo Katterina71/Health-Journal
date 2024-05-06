@@ -50,8 +50,9 @@ const dailyHealthSchema = new Schema({
 {_id: false}
 )
 
+dailyHealthSchema.index({ userId: 1, date: 1 }, { unique: true });
 
-  const DailyHealth = mongoose.model('DailyHealth',dailyHealthSchema)
+const DailyHealth = mongoose.model('DailyHealth',dailyHealthSchema)
   
   // module.exports = DailyHealth;
   export default DailyHealth;
