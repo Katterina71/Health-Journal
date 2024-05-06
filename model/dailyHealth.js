@@ -46,8 +46,7 @@ const dailyHealthSchema = new Schema({
     snacks: [snacksSchema]
   },
   exercises: [exerciseSchema]
-},
-{_id: false}
+}
 )
 
 dailyHealthSchema.index({ userId: 1, date: 1 }, { unique: true });

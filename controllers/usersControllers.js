@@ -20,6 +20,22 @@ async function allData (req, res) {
     }
 }
 
+async function getById (req, res,next) {
+
+    try {
+        const result = await Users.findOne({_id: req.params.id});
+        console.log(result)
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send({ message: 'No user data found!' });
+        }
+    } catch (err) {
+        console.error('Error retrieving user data:', err);
+        next(err); 
+    }
+}
+
 async function addUser(req, res, next){
  try {
     //add new user in the DB
@@ -49,9 +65,7 @@ async function removeUser (req, res, next){
     const userId = req.params.userId;
     console.log('Remove user by userId: '+req.params.userId)
     try {
-        // Start a session and transaction
-        // const session = await mongoose.startSession();
-        // session.startTransaction();
+
         
         // Delete user
         const userDeletionResult = await Users.deleteOne({ _id: userId }, { session });
@@ -112,4 +126,4 @@ async function editUser (req, res, next) {
     }
 }
 
-export {allData, addUser, removeUser, editUser}
+export {allData, addUser, removeUser, editUser, getById}

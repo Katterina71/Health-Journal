@@ -14,6 +14,7 @@
     "express": "^4.19.2",
     "moment": "^2.30.1",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.3.3"
+    "mongoose": "^8.3.3",
+    "validator": "^13.11.0"
   }
 }

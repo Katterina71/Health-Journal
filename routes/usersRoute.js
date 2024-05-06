@@ -5,17 +5,19 @@ const router = express.Router();
 
 import mongoose from 'mongoose';
 import Users from '../model/users.js';
-import {allData, addUser, removeUser, editUser} from '../controllers/usersControllers.js'
+import {allData, addUser, removeUser, editUser, getById} from '../controllers/usersControllers.js'
 
 
 
 router.get('/', allData);
 
-router.post('/add', addUser);
+router.get('/:id', getById);
 
-router.patch('/edit/:userId', editUser);
+router.post('/post', addUser);
 
-router.delete('/delete/:userId', removeUser);
+router.patch('/update/:userId', editUser);
+
+router.delete('/remove/:userId', removeUser);
 
 
 export default router

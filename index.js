@@ -11,7 +11,7 @@ connectToDb();
 
 import users from "./routes/usersRoute.js";
 import dailyHealth from "./routes/dailyHealthRoute.js";
-import sleepLogs from "./routes/SleepLogsRoute.js";
+import sleepLogs from "./routes/sleepLogsRoute.js";
 
 app.use(express.json());
 

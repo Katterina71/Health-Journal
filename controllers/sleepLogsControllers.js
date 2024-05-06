@@ -15,6 +15,20 @@ async function allData(req, res, next) {
     }
 }
 
+async function getById (req, res,next) {
+    try {
+        const result = await SleepLogs.findOne({_id: req.params.id});
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send({ message: 'No sleep log data found!' });
+        }
+    } catch (err) {
+        console.error('Error retrieving sleep log data:', err);
+        next(err); 
+    }
+}
+
 async function postData (req, res, next) {
   
 try {
@@ -51,9 +65,7 @@ try {
 
 async function removeData (req, res, next) {
 
-    const dateString = req.query.date;
-    let formattedDate = dateString.replace(' ', '+'); 
-    let dateObject = new Date(formattedDate);
+
 
     try {
         // Find the user by username to get the user's ID
@@ -83,9 +95,6 @@ async function editData (req, res, next) {
 
     let sleepLogId = req.params.id;
 
-    // const dateString = req.query.date;
-    // let formattedDate = dateString.replace(' ', '+'); 
-    // let dateObject = new Date(formattedDate);
 
     // Normalize the date to midnight UTC
     const inputDate = new Date(req.body.date);
@@ -114,7 +123,6 @@ async function editData (req, res, next) {
         console.error(err);
         next(err);
     }
-
-
  }
-export {allData, postData, removeData, editData}
+ 
+export {allData, postData, removeData, editData, getById}
