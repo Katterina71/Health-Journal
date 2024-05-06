@@ -29,19 +29,28 @@ The Health Journal is a server application designed to track and manage personal
 
 ### **User Endpoints**
 
-- **POST /api/users/add**: Create a new user.
+- **POST /api/users/post**: Create a new user.
 - **GET /api/users/**: Retrieve all users.
 - **GET /api/users/:id**: Retrieve a single user by ID.
-- **PATCH /api/users/edit/:userId**: Update a user by ID.
-- **DELETE /api/delete/:userId**: Delete a user with all information from other collections.
+- **PATCH /api/users/update/:userId**: Update a user by ID.
+- **DELETE /api/remove/:userId**: Delete a user with all information from other collections.
 
 ### **Sleep Log Endpoints**
 
-- **POST /api/sleeplogs/add/:username**: Create a new sleep log.
+- **POST /api/sleeplogs/post/:userId**: Create a new sleep log by userId.
 - **GET /api/sleeplogs/**: Retrieve all sleep logs.
 - **GET /api/sleeplogs/:id**: Retrieve a sleep log by ID.
-- **PATCH /api/sleeplogs/edit/:id**: Update a sleep log by ID.
-- **DELETE /api/sleeplogs/delete/:username**: Delete a sleep log by ID.
+- **PATCH /api/sleeplogs/update/:id**: Update a sleep log by ID.
+- **DELETE /api/sleeplogs/remove/:username**: Delete a sleep log by ID.
+
+### **Daily Health Log Endpoints**
+
+- **POST /api/dailyhealth/post/:userId**: Create a new sleep log by userId.
+- **GET /api/dailyhealth/**: Retrieve all sleep logs.
+- **GET /api/dailyhealth/:id**: Retrieve a sleep log by ID.
+- **GET /api/dailyhealth/:userId/:date**: Retrieve a sleep log by User ID and Date.
+- **PATCH /api/dailyhealth/update/:userId/:date**: Update a sleep log by ID.
+- **DELETE /api/dailyhealth/remove/:userId/:date**: Delete a sleep log by ID.
 
 ## **Database Collections**
 
@@ -51,6 +60,7 @@ The Health Journal is a server application designed to track and manage personal
 
 - **Users**: Username must be unique and email must be a valid email format.
 - **Sleep Logs**: Ensure that each log for a user is unique by date.
+- **Daily Health**: Ensure that each log for a user is unique by date.
 
 ## **Indexes**
 
