@@ -20,7 +20,7 @@ async function allData (req, res, next) {
 async function getById (req, res,next) {
     try {
         const result = await DailyHealth.findOne({_id: req.params.id});
-        if (result.length > 0) {
+        if (result) {
             res.send(result);
         } else {
             res.status(404).send({ message: 'No daily health data found!' });
@@ -28,6 +28,37 @@ async function getById (req, res,next) {
     } catch (err) {
         console.error('Error retrieving daily health data:', err);
         next(err); 
+    }
+}
+
+
+async function getByIdAndDate(req, res, next) {
+    try {
+        console.log('Requested Date:', req.params.date);
+        const user = await Users.findOne({ _id: req.params.userId }).select('_id');
+        if (!user) {
+            return res.status(404).send({ message: "User not found." });
+        }
+
+        const userId = user._id;
+        const date = req.params.date;
+        const inputDate = new Date(date);
+        const normalizedDate = new Date(Date.UTC(inputDate.getFullYear(), inputDate.getMonth(), inputDate.getDate()));
+        console.log('Normalized Date:', normalizedDate);
+
+        // Declare result using let or const
+        const result = await DailyHealth.find({ userId: userId, date: normalizedDate });
+        console.log('Query Result:', result);
+
+        // Check if result array is empty
+        if (result.length > 0) {
+            res.send(result);
+        } else {
+            res.status(404).send({ message: 'No daily health data found!' });
+        }
+    } catch (err) {
+        console.error('Error retrieving daily health data:', err);
+        next(err);
     }
 }
 
@@ -122,4 +153,4 @@ async function updateData (req, res) {
         }
     }
 // export {allData, addUser, removeUser, editUser}
-export {allData, postData, removeData, updateData, getById}
+export {allData, postData, removeData, updateData, getById, getByIdAndDate}

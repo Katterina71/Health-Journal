@@ -29,10 +29,11 @@ async function getById (req, res,next) {
     }
 }
 
-async function postData (req, res, next) {
+async function postData (req, res) {
   
 try {
-    const user = await Users.findOne({ username: req.params.username }).select('_id');
+    
+    const user = await Users.findOne({ _id: req.params.id }).select('_id');
     if (!user) {
         return res.status(404).send({ message: "User not found." });
     }
@@ -43,6 +44,7 @@ try {
     const inputDate = new Date(req.body.date);
     const normalizedDate = new Date(Date.UTC(inputDate.getFullYear(), inputDate.getMonth(), inputDate.getDate()));
 
+    console.log(userId)
      //add new sleepLog in the DB
      const sleepLog = new SleepLogs ({
         userId: userId,
@@ -54,8 +56,7 @@ try {
     res.status(201).send(savedSleepLog);
     }
     catch (err) {
-        console.error(err); 
-        if (err.code === 11000 && err.keyPattern.userId && err.keyPattern.date) {
+        if (err.code === 11000) {
             res.status(409).send({ message: 'A sleep log for this user and date has already been added.' });
         } else {
             res.status(400).send({ message: err.message });

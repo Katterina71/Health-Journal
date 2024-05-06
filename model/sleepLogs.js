@@ -9,11 +9,11 @@ const sleepLogsSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId, 
     ref: 'User',  
-    required: true  
+    required: true
   },
   date: {
     type: Date,
-    required: true,
+    required: true
   },
   hoursSlept: {
     type: Number,
@@ -26,6 +26,6 @@ const sleepLogsSchema = new Schema({
 sleepLogsSchema.index({ userId: 1, date: 1 }, { unique: true });
 
 const SleepLogs = mongoose.model('SleepLogs',sleepLogsSchema)
-  
+
 // module.exports = SleepLogs;
 export default SleepLogs;

@@ -14,7 +14,7 @@ router.get('/', allData);
 
 router.get('/:id', getById);
 
-router.post('/post/:username', postData)
+router.post('/post/:id', postData)
 
 router.delete('/remove/:username', removeData)
 

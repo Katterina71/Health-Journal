@@ -68,7 +68,7 @@ async function removeUser (req, res, next){
 
         
         // Delete user
-        const userDeletionResult = await Users.deleteOne({ _id: userId }, { session });
+        const userDeletionResult = await Users.deleteOne({ _id: userId });
         if (userDeletionResult.deletedCount === 0) {
             throw new Error("User not found");
         }
@@ -89,10 +89,6 @@ async function removeUser (req, res, next){
         res.send({ message: "User and all related data deleted successfully." });
     } catch (err) {
   
-        if (session) {
-            await session.abortTransaction();
-            session.endSession();
-        }
         console.log(err);
         next(err);  
     }
