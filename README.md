@@ -45,16 +45,7 @@ The Health Journal is a server application designed to track and manage personal
 
 ## **Database Collections**
 
-### **Users Collection**
-
-- **username**: Unique identifier for the user.
-- **email**: User's email address.
-
-### **Sleep Logs Collection**
-
-- **userId**: Reference to the User collection.
-- **date**: Date of the sleep log.
-- **hoursSlept**: Number of hours the user slept.
+<img width="1360" alt="db" src="https://github.com/Katterina71/Health-Journal/assets/161891975/ae5a916b-1dd8-4b05-88fc-de8ed3a5074f">
 
 ## **Validation Rules**
 
